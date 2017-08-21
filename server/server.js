@@ -14,7 +14,17 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Start defining routes for API
+app.post('/places/:place', (req, res) => {
+    // Add new place
+});
 
+app.get('/places', (req, res) => {
+    
+});
+
+app.get('/weather/:place', (req, res) => {
+
+});
 
 // End 
 
