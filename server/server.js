@@ -1,4 +1,4 @@
-require ('./config/config.js');
+// require ('./config/config.js');
 
 const _ = require('lodash');
 const express = require('express');
@@ -30,6 +30,6 @@ app.get('/weather/:place', (req, res) => {
 
 app.listen(port, () => {
     setInterval(function(){
-        helper.getWeather('Wroclaw');
-    }, 5000);
+        helper.getCurrentWeather('Wroclaw');
+    }, 3600000);
 });
