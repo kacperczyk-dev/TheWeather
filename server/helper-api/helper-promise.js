@@ -17,12 +17,12 @@ var getCurrentWeather = function(place){
     }).then((response) => {
         var forecast = new Forecast({
             place: place, 
+            time: new Date().getMilliseconds(),
             currently: response.data.currently
         });
         forecast.save().then((doc) => {
             console.log(doc);
         });
-
     }).catch((e) => {
         if(e.code === 'ENOTFOUND'){
             console.log('Unable to connect to API servers.');

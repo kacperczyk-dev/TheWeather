@@ -6,6 +6,10 @@ var forecastSchema = new Schema({
         type: String,
         required: true
     },
+    time: {
+        type: Number,
+        required: true
+    },
     currently: {
         type: Object,
         required: true

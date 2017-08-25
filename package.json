@@ -18,5 +18,8 @@
     "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.7"
+  },
+  "devDependencies": {
+    "cors": "^2.8.4"
   }
 }
