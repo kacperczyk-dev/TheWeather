@@ -18,6 +18,4 @@ var forecastSchema = new Schema({
 
 var Forecast = mongoose.model('Forecast', forecastSchema);
 
-module.exports = {
-    Forecast
-};
+module.exports = Forecast;

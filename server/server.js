@@ -26,7 +26,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Forward all /weather requests to ./routes/weather
-app.use('/', weatherRoutes);
+app.use('/weather', weatherRoutes);
 
 // Login
 app.use('/login', authRoutes);
@@ -34,7 +34,6 @@ app.use('/login', authRoutes);
 // When app is started start fetching data from API each hour
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
-
     setInterval(function(){
         helper.getCurrentWeather('Wroclaw');
     }, 3600000);

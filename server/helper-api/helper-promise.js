@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-var {Forecast} = require('./../db/models/forecast');
+var Forecast = require('./../db/models/forecast');
 
 var getCurrentWeather = function(place){
     var encodedAddress = encodeURIComponent(place);
@@ -17,7 +17,7 @@ var getCurrentWeather = function(place){
     }).then((response) => {
         var forecast = new Forecast({
             place: place, 
-            time: new Date().getMilliseconds(),
+            time: Date.now(),
             currently: response.data.currently
         });
         forecast.save().then((doc) => {
@@ -34,4 +34,4 @@ var getCurrentWeather = function(place){
 
 module.exports = {
     getCurrentWeather
-}
+};

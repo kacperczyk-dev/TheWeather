@@ -1,12 +1,13 @@
 <div class="container">
-  <div class="list-group" *ngFor="let place of places">
+  <div class="list-group" *ngFor="let forecast of forecasts">
   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ place.userId }} {{ place.id }}</h5>
-      <small>{{ place.title }}</small>
+      <h5 class="mb-1">{{ forecast.place }} {{ forecast.currently.temperature }}</h5>
+      <small>
+        Last updated {{(time - forecast.time) / 1000 / 60 / 60}} min ago
+      </small>
     </div>
-    <p class="mb-1">{{ place.body }}</p>
-    <small>xxx</small>
+    <p class="mb-1">pressue: {{ forecast.currently.pressure }} hPa</p>
   </a>
 </div>
 </div>

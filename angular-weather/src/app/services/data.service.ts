@@ -13,7 +13,7 @@ export class DataService {
   ) { }
 
   getCurrentData(): Promise<any> {
-    return this.http.get('http://jsonplaceholder.typicode.com/posts').toPromise();
+    return this.http.get('http://localhost:3000/weather').toPromise();
   }
 
 }

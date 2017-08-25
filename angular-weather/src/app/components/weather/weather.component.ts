@@ -8,7 +8,8 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent implements OnInit {
-  places: Object[];
+  forecasts: Object[];
+  time: Number;
 
   constructor(
     private dataService: DataService
@@ -16,9 +17,9 @@ export class WeatherComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.time = new Date();
     this.dataService.getCurrentData().then((res) =>{
-      this.places = res.json();
-      console.log(this.places[0]);
+      this.forecasts = res.json();
     }).catch((err) => {
       console.log('Cannot fetch data');
     });
