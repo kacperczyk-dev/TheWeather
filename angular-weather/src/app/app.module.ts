@@ -13,16 +13,19 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 // Services
 import { DataService } from './services/data.service';
+import { DetailsComponent } from './components/details/details.component';
 
 const appRoutes: Routes = [
-  {path: '', component: WeatherComponent}
+  {path: '', component: WeatherComponent},
+  {path: 'details/:place', component: DetailsComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
-    NavbarComponent
+    NavbarComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,95 @@
+<br><br>
+<div *ngIf="details">
+    <div>
+        <h2 class="text-center"> {{ place }}
+            <small class="text-muted">{{ details[0].temperature | number:'1.0-0'}} &deg;C</small>
+        </h2>
+        <p class="text-center">{{ details[0].summary }}</p>
+    </div>
+    <br>
+    <div>
+        <h3 class="text-left">Details</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-md-left">Apparent temperature</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-md-left">{{ details[0].apparentTemperature | number:'1.0-0' }} &deg;C</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-md-left">Humidity</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-md-left">{{ details[0].humidity * 100  | number:'1.0-0'}}%</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-md-left">Wind speed</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-md-left">{{ details[0].windSpeed  | number:'1.0-2'}} m/s </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-md-left">Cloud cover</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-md-left">{{ details[0].cloudCover * 100  | number:'1.0-0'}}% </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-md-left">Pressure</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-md-left">{{ details[0].pressure}} hPa </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-md-left">UV index</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-md-left">{{ details[0].uvIndex  | number:'1.0-0'}} </p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="d-flex flex-wrap justify-content-around">
+        <button (click)="getForecast()" type="button" class="btn btn-primary">Get forecast</button>
+        <button (click)="getHistData()" type="button" class="btn btn-primary">Get historical data</button>
+    </div>
+    <br><br>
+    <div *ngIf="forecast">
+        <h3 class="text-left">Next week</h3>
+        <div class="card-columns d-flex flex-wrap justify-content-center">
+        <br>
+        <div *ngFor="let day of daily">
+            <div class="card">
+                <div class="card-block">
+                    <h5>{{ getDate(day.time) }}</h5>
+                    <hr><br>
+                    <h6>
+                        {{day.temperatureMin | number:'1.0-0' }} &deg;C -
+                        {{day.temperatureMax | number:'1.0-0' }} &deg;C
+                    </h6>
+                    <p>{{day.summary}}</p>
+                    <p class="precip" *ngIf="day.precipType">There is {{day.precipProbability * 100 | number:'1.0-0'}}% chance for {{day.precipType}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <br>
+</div>
+

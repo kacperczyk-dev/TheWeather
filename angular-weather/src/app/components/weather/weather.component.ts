@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 
-
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -13,11 +12,10 @@ export class WeatherComponent implements OnInit {
 
   constructor(
     private dataService: DataService
-    
   ) { }
 
   ngOnInit() {
-    this.time = new Date();
+    this.time = new Date().getTime();
     this.dataService.getCurrentData().then((res) =>{
       this.forecasts = res.json();
     }).catch((err) => {

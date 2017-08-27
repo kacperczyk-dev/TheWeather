@@ -35,6 +35,9 @@ app.use('/login', authRoutes);
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
     setInterval(function(){
+        helper.getCurrentWeather('Warsaw');
         helper.getCurrentWeather('Wroclaw');
+        helper.getCurrentWeather('Gdansk');
+        helper.getCurrentWeather('Cracow');
     }, 3600000);
 });

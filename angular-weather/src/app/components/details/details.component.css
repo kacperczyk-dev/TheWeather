@@ -1,0 +1,17 @@
+hr {
+    margin: 0;
+    padding: 0;
+}
+p.precip {
+    color:red;
+}
+div.row p {
+    margin:0;
+    padding:0;
+}
+.card {
+    display: inline-block;
+    width: 300px;
+    min-height: 300px;
+    padding: 10px;
+}

@@ -16,4 +16,7 @@ export class DataService {
     return this.http.get('http://localhost:3000/weather').toPromise();
   }
 
+  getPlaceDetails(place: String): Promise<any> {
+    return this.http.get('http://localhost:3000/weather/' + place).toPromise();
+  }
 }
