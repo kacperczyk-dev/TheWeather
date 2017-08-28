@@ -65,6 +65,11 @@
     </div>
     <br>
     <br>
+    <canvas ctx></canvas>
+    <div *ngFor="let hour of hourly">
+        <span>{{ hour.temperature }} </span>
+    </div>
+    <br>
     <div class="d-flex flex-wrap justify-content-around">
         <button (click)="getForecast()" type="button" class="btn btn-primary">Get forecast</button>
         <button (click)="getHistData()" type="button" class="btn btn-primary">Get historical data</button>
@@ -72,22 +77,23 @@
     <br><br>
     <div *ngIf="forecast">
         <h3 class="text-left">Next week</h3>
-        <div class="card-columns d-flex flex-wrap justify-content-center">
         <br>
-        <div *ngFor="let day of daily">
-            <div class="card">
-                <div class="card-block">
-                    <h5>{{ getDate(day.time) }}</h5>
-                    <hr><br>
-                    <h6>
-                        {{day.temperatureMin | number:'1.0-0' }} &deg;C -
-                        {{day.temperatureMax | number:'1.0-0' }} &deg;C
-                    </h6>
-                    <p>{{day.summary}}</p>
-                    <p class="precip" *ngIf="day.precipType">There is {{day.precipProbability * 100 | number:'1.0-0'}}% chance for {{day.precipType}}</p>
+        <div class="card-columns d-flex flex-wrap justify-content-center">
+            <br>
+            <div *ngFor="let day of daily">
+                <div class="card">
+                    <div class="card-block">
+                        <h5>{{ getDate(day.time) }}</h5>
+                        <hr><br>
+                        <h6>
+                            {{day.temperatureMin | number:'1.0-0' }} &deg;C -
+                            {{day.temperatureMax | number:'1.0-0' }} &deg;C
+                        </h6>
+                        <p>{{day.summary}}</p>
+                        <p class="precip" *ngIf="day.precipType">There is {{day.precipProbability * 100 | number:'1.0-0'}}% chance for {{day.precipType}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
     <br>
