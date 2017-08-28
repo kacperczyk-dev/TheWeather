@@ -1,11 +1,10 @@
-import { Directive, ElementRef, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ChartService } from '../../services/chart.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import Chart from 'chart.js';
 
-@Directive({ selector: '[ctx]' })
+
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -17,16 +16,33 @@ export class DetailsComponent implements OnInit {
   daily: any[];
   hourly: any[];
   forecast: boolean;
-  chart: Chart;
-  ctx;
+  chart: boolean;
+
+  //Chart
+  chartOptions: Object;
+  chartData: Object[];
+  chartLabels: String[];
+  
 
   constructor(
      private dataService: DataService,
      private chartService: ChartService,
-     public route:ActivatedRoute,
-     public el: ElementRef
+     public route:ActivatedRoute
   ) { 
     this.forecast = false;
+    this.chart = false;
+    this.chartData = [];
+    this.chartLabels = [];
+    this.chartOptions = {
+      responsive: true,
+      scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
   }
 
   ngOnInit() {
@@ -35,24 +51,26 @@ export class DetailsComponent implements OnInit {
       this.details = res.json();
       this.daily = this.details[0].daily.data;
       this.hourly = this.details[0].hourly.data;
-      this.chartService.createChart(this.el.nativeElement, this.hourly, undefined);
+      this.prepareChart(this.hourly);
     }).catch((err) => {
       console.log('Cannot fetch data');
       console.log(err);
     });
   }
 
-
   getForecast() {
     this.forecast = !this.forecast;
   }
 
-  getHistData() {
-   
+  prepareChart(hourly: any[]){
+    let setup = this.chartService.prepareChartData(hourly);
+    console.log(setup);
+    this.chartData.push(setup[0]);
+    this.chartLabels = setup[1];
+    this.chart = true;
   }
 
   getDate(timestamp:number){
-    return new Date(timestamp * 1000).toDateString()
+    return new Date(timestamp * 1000).toDateString();
   }
-
 }

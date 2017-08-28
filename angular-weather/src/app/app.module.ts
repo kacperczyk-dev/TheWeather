@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { HttpModule } from '@angular/http';
+
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { ChartsModule } from 'ng2-charts';
 
 // Components
 import { AppComponent } from './app.component';
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
+    ChartsModule
   ],
   providers: [
     DataService,

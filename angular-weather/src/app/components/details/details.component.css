@@ -9,7 +9,7 @@ div.row p {
     margin:0;
     padding:0;
 }
-.card {
+.card{
     display: inline-block;
     width: 300px;
     min-height: 300px;
