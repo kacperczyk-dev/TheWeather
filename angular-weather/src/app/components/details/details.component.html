@@ -1,4 +1,9 @@
 <br><br>
+<div class="pull-left">
+<a href="#" [routerLink]="['/']" class="card-link">
+          <i class="fa fa-arrow-circle-left"> Home</i>
+</a>
+</div>
 <div *ngIf="details">
     <div>
         <h2 class="text-center"> {{ place }}
@@ -66,9 +71,9 @@
     <br>
     <br>
     <div>
-        <canvas *ngIf="chart"
+        <canvas
             baseChart
-            [chartType]="'bar'"
+            [chartType]="'line'"
             [datasets]="chartData"
             [labels]="chartLabels"
             [options]="chartOptions"

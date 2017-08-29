@@ -21,7 +21,9 @@ export class ChartService {
     }
     this.chartSetup.push({
       data: this.chartData,
-      label: 'temperature'
+      label: 'Temp.',
+      backgroundColor: 'RED'
+      //fill: false
     });
     this.chartSetup.push(this.chartLabels);
     return this.chartSetup;

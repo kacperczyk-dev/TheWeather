@@ -16,7 +16,6 @@ export class DetailsComponent implements OnInit {
   daily: any[];
   hourly: any[];
   forecast: boolean;
-  chart: boolean;
 
   //Chart
   chartOptions: Object;
@@ -29,17 +28,32 @@ export class DetailsComponent implements OnInit {
      private chartService: ChartService,
      public route:ActivatedRoute
   ) { 
-    this.forecast = false;
-    this.chart = false;
-    this.chartData = [];
-    this.chartLabels = [];
-    this.chartOptions = {
+      this.forecast = false;
+      this.chartData = [];
+      this.chartLabels = [];
+      this.chartOptions = {
       responsive: true,
+      title:{
+        display:true,
+        text:'Temperature'
+      },
       scales: {
             yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+              display: true,
+              ticks: {
+                beginAtZero: true
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'Temperature'
+              }
+            }],
+            xAxes: [{
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Time'
+              }
             }]
         }
     };
@@ -64,10 +78,8 @@ export class DetailsComponent implements OnInit {
 
   prepareChart(hourly: any[]){
     let setup = this.chartService.prepareChartData(hourly);
-    console.log(setup);
     this.chartData.push(setup[0]);
     this.chartLabels = setup[1];
-    this.chart = true;
   }
 
   getDate(timestamp:number){
