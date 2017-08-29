@@ -1,15 +1,20 @@
 <br><br>
 <div class="pull-left">
-<a href="#" [routerLink]="['/']" class="card-link">
-          <i class="fa fa-arrow-circle-left"> Home</i>
+<a href="#" [routerLink]="['/']" class="btn btn-md btn-secondary">
+    <i class="fa fa-arrow-circle-left"> Home</i>
 </a>
 </div>
 <div *ngIf="details">
-    <div>
-        <h2 class="text-center"> {{ place }}
-            <small class="text-muted">{{ details[0].temperature | number:'1.0-0'}} &deg;C</small>
-        </h2>
-        <p class="text-center">{{ details[0].summary }}</p>
+    <div class="text-center">
+        <h2 class="text-center">{{ place }}</h2>      
+        <h3 class="text-muted text-center left">
+            <span>
+            <i class="fa fa-thermometer-quarter"></i> 
+                {{ details[0].temperature | number:'1.0-0'}} &deg;C
+            </span>
+            <img src="../../../assets/weather-icons/{{details[0].icon}}.svg"> 
+            {{ details[0].summary }}
+        </h3>
     </div>
     <br>
     <div>
@@ -56,7 +61,7 @@
             <p class="text-md-left">Pressure</p>
         </div>
         <div class="col-md-6">
-            <p class="text-md-left">{{ details[0].pressure}} hPa </p>
+            <p class="text-md-left">{{ details[0].pressure | number:'1.0-0'}} hPa </p>
         </div>
     </div>
     <hr>

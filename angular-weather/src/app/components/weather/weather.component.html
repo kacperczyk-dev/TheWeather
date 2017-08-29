@@ -12,12 +12,27 @@
       <div class="card-block">
         <h4 class="card-title">{{ forecast.place }}</h4>
         <hr>
-        <p><b>Temp.</b> {{ forecast.temperature }}&deg;C</p>
-        <p><i>{{forecast.summary}}</i></p>
-        <a href="#" [routerLink]="['/details/'+forecast.place]" class="card-link">
-          <i class="fa fa-arrow-circle-right"> Details</i>
-        </a>
+        <div class="row">                 
+          <div class="col-sm-4">          
+            <p>{{forecast.summary}}</p>
+            <p>
+              <i class="fa fa-thermometer-quarter"></i> {{ forecast.temperature | number: '1.0-0'}} &deg;C
+            </p>      
+          </div> 
+          <div class="col-sm-8">
+             <img class="icon" src="../../../assets/weather-icons/{{forecast.icon}}.svg"> 
+          </div>                
+        </div>
+        <div class="text-center">
+          <a href="#" [routerLink]="['/details/'+forecast.place]" class="btn btn-md btn-secondary">
+            <i class="fa fa-arrow-circle-right"> Details</i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+  
+
+  

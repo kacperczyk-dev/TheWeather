@@ -10,7 +10,7 @@ export class DataService {
 
   constructor(
     private http: Http
-  ) { }
+  ) {}
 
   getCurrentData(): Promise<any> {
     return this.http.get('http://localhost:3000/weather').toPromise();
