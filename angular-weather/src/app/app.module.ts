@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ChartsModule } from 'ng2-charts';
@@ -15,11 +16,15 @@ import { DetailsComponent } from './components/details/details.component';
 // Services
 import { DataService } from './services/data.service';
 import { ChartService } from './services/chart.service';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: WeatherComponent},
-  {path: 'details/:place', component: DetailsComponent}
+  {path: 'details/:place', component: DetailsComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'signin', component: LoginComponent}
 ];
 
 @NgModule({
@@ -27,14 +32,18 @@ const appRoutes: Routes = [
     AppComponent,
     WeatherComponent,
     NavbarComponent,
-    DetailsComponent
+    DetailsComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     DataService,
