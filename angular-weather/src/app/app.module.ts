@@ -12,13 +12,13 @@ import { AppComponent } from './app.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DetailsComponent } from './components/details/details.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 // Services
 import { DataService } from './services/data.service';
 import { ChartService } from './services/chart.service';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   {path: '', component: WeatherComponent},
@@ -47,7 +47,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     DataService,
-    ChartService
+    ChartService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

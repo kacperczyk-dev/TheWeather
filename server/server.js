@@ -28,8 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Forward all /weather requests to ./routes/weather
 app.use('/weather', weatherRoutes);
 
-// Login
-app.use('/login', authRoutes);
+// Login and Register
+app.use('/auth', authRoutes);
+
+
+
 
 // When app is started start fetching data from API each hour
 app.listen(port, () => {

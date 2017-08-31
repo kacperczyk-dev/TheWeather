@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/User';
-
+import { AuthService } from '../../services/auth.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,7 +13,10 @@ export class RegisterComponent implements OnInit {
   user: User;
   emailRegex;
   
-  constructor() { 
+  constructor(
+    private authService: AuthService,
+    public flashMessagesService: FlashMessagesService
+  ) { 
     this.emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   }
 
@@ -43,4 +47,20 @@ export class RegisterComponent implements OnInit {
   get password() { return this.registerForm.get('password'); }
   get passwordVerif() { return this.registerForm.get('passwordVerif'); }
 
+  register(){
+    var response: Object;
+    this.authService.register(this.user).then((res) => {
+      console.log(res);
+      this.flashMessagesService.show(res.json().message,{ 
+          cssClass: 'alert-success', 
+          timeout: 3000 
+        });
+      this.registerForm.reset();    
+    }).catch((err) => {
+      this.flashMessagesService.show(err, {
+        cssClass: 'alert-danger',
+        timeout: 7000
+      });
+    });
+  }
 }
