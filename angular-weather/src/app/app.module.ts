@@ -14,17 +14,24 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DetailsComponent } from './components/details/details.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 // Services
 import { DataService } from './services/data.service';
 import { ChartService } from './services/chart.service';
 import { AuthService } from './services/auth.service';
 
+
+// Guards
+import { RegisterGuard } from './guards/register.guard';
+import { AuthGuard } from './guards/auth.guard';
+
 const appRoutes: Routes = [
   {path: '', component: WeatherComponent},
   {path: 'details/:place', component: DetailsComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'signin', component: LoginComponent}
+  {path: 'register', component: RegisterComponent, canActivate: [RegisterGuard]},
+  {path: 'signin', component: LoginComponent, canActivate: [RegisterGuard]},
+  {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -34,7 +41,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     DetailsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,9 @@ const appRoutes: Routes = [
   providers: [
     DataService,
     ChartService,
-    AuthService
+    AuthService,
+    RegisterGuard,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

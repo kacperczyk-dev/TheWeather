@@ -44,13 +44,6 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-control-label" for="password-verif">Confirm password</label>
-          <input formControlName="passwordVerif" type="password" class="form-control" id="password-verif" [(ngModel)] = user.passwordVerif>
-          <div *ngIf="passwordVerif.invalid && (passwordVerif.dirty || passwordVerif.touched)" class="form-text text-danger">
-            Password does not match
-          </div>
-        </div>
         <button class="btn btn-primary btn-md" [disabled]="!registerForm.valid">Register</button>
       </form>
     </div>

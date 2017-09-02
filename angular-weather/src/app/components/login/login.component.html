@@ -1,3 +1,43 @@
-<p>
-  login works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <br>
+      <div class="pull-left">
+        <a href="#" [routerLink]="['/']" class="btn btn-md btn-secondary">
+          <i class="fa fa-arrow-circle-left"> Home</i>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <br>
+        <h2>Sing in</h2>
+        <br>
+        <div class="form-group">
+          <label class="form-control-label" for="email">Email</label>
+          <input formControlName="email" type="text" class="form-control" id="email" [(ngModel)] = user.email>
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-text text-danger">
+            Email address is required     
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="password">Password</label>
+          <input formControlName="password" type="password" class="form-control" id="password" [(ngModel)] = user.password>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="form-text text-danger">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 6 characters long.
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-md" [disabled]="!loginForm.valid">Login</button>
+      </form>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+</div>
+<br>

@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/User';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,13 +17,14 @@ export class RegisterComponent implements OnInit {
   
   constructor(
     private authService: AuthService,
-    public flashMessagesService: FlashMessagesService
+    public flashMessagesService: FlashMessagesService,
+    public router:Router
   ) { 
     this.emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   }
 
   ngOnInit() {
-    this.user = new User("", "", "", "");
+    this.user = new User("", "", "");
     this.registerForm = new FormGroup({
       'fullName': new FormControl(this.user.fullName,[
         Validators.required,
@@ -34,10 +37,6 @@ export class RegisterComponent implements OnInit {
       'password': new FormControl(this.user.password,[
         Validators.required,
         Validators.minLength(6),        
-      ]),
-      'passwordVerif': new FormControl(this.user.passwordVerif,[
-        Validators.required,
-        Validators.minLength(6)
       ])
     });
   }
@@ -45,17 +44,15 @@ export class RegisterComponent implements OnInit {
   get fullName() { return this.registerForm.get('fullName'); }
   get email() { return this.registerForm.get('email'); }
   get password() { return this.registerForm.get('password'); }
-  get passwordVerif() { return this.registerForm.get('passwordVerif'); }
 
-  register(){
-    var response: Object;
+  register() {
     this.authService.register(this.user).then((res) => {
-      console.log(res);
-      this.flashMessagesService.show(res.json().message,{ 
+      this.flashMessagesService.show(`${res.json().email} succesfully registered`,
+        { 
           cssClass: 'alert-success', 
           timeout: 3000 
         });
-      this.registerForm.reset();    
+      this.router.navigate(['/']);
     }).catch((err) => {
       this.flashMessagesService.show(err, {
         cssClass: 'alert-danger',
