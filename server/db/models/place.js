@@ -1,15 +1,14 @@
-const {mongoose, Schema} = require('mongoose');
+const {mongoose} = require('./../mongoose-config');
+const {Schema} = require('mongoose');
 
 var placeSchema = new Schema({
-    name: {
+    city: {
         type: String,
-        required,
+        required: true,
         minlength: 2
     }
 });
 
 var Place = mongoose.model('Place', placeSchema);
 
-module.exports = {
-    Place
-};
+module.exports = Place;

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Forecast = require('./../db/models/forecast');
-var helper = require('./../helper-api/helper-promise');
 
 // Routes for /weather*
 

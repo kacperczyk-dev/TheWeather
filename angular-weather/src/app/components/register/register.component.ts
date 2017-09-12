@@ -54,10 +54,18 @@ export class RegisterComponent implements OnInit {
         });
       this.router.navigate(['/']);
     }).catch((err) => {
-      this.flashMessagesService.show(err, {
-        cssClass: 'alert-danger',
-        timeout: 7000
-      });
+      if(err.status === 406){
+        this.flashMessagesService.show('This email address is already registered',
+          { 
+            cssClass: 'alert-danger', 
+            timeout: 5000 
+          });
+      } else {
+        this.flashMessagesService.show(err, {
+          cssClass: 'alert-danger',
+          timeout: 7000
+        });
+      }
     });
   }
 }

@@ -21,12 +21,19 @@ router.post('/login', (req, res, next) => {
 router.post('/register', (req, res, next) => {
     var body = _.pick(req.body, ['fullName', 'email', 'password']);
     var user = new User(body);
-    user.save().then((user) => {
-        return user.generateAuthToken();
-    }).then((token) => {
-        res.header('x-auth', token).send(user);
-    }).catch((e) => {
-        res.status(400).send(e);
+    User.findOne({email: user.email}).then((doc) => {
+        if(doc){
+            return res.status(406).send();
+        }
+        else {
+            user.save().then((user) => {
+            return user.generateAuthToken();
+            }).then((token) => {
+                res.header('x-auth', token).send(user);
+            }).catch((e) => {
+                res.status(400).send(e);
+            });
+        }
     });
 });  
 

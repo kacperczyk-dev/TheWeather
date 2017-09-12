@@ -1,3 +1,10 @@
-<p>
-  admin-panel works!
-</p>
+<ul class="list-group">
+  <li class="list-group-item justify-content-between" *ngFor="let city of cities">
+    {{city}}
+    <div>
+      <a href="#" (click)="(city); false"><i class="fa fa-pencil-square-o"></i></a>
+      <a href="#" (click)="removeCity(city); false"><i class="fa fa-times"></i></a>
+      <i class="fa fa-plus"></i>
+    </div>
+  </li>
+</ul>

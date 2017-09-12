@@ -1,6 +1,19 @@
 const axios = require('axios');
 
 var Forecast = require('./../db/models/forecast');
+var Place = require('./../db/models/place');
+
+var getWeather = function() {
+    Place.find({}, '-_id').then((cities) => {
+        cities = cities.map((city) => {
+            return city.city;
+        });
+        n = cities.length;
+        for(i=0; i<n; i++){
+            getCurrentWeather(cities[i]);
+        }
+    });
+};
 
 var getCurrentWeather = function(place){
     var encodedAddress = encodeURIComponent(place);
@@ -46,5 +59,5 @@ var getCurrentWeather = function(place){
 };
 
 module.exports = {
-    getCurrentWeather
+    getWeather
 };
