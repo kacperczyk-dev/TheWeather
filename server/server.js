@@ -1,7 +1,7 @@
 //require ('./config/config.js');
 const _ = require('lodash');
 const express = require('express');
-const cors = require('cors');
+//const cors = require('cors');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 var path = require('path');
@@ -41,6 +41,9 @@ app.use('/place', placeRoutes);
 // Login and Register
 app.use('/auth', authRoutes);
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // When app is started start fetching data from API each 30min
 app.listen(port, () => {
