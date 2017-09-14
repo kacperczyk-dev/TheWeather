@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Forecast = require('./../db/models/forecast');
+const Place = require('./../db/models/place');
 
 // Routes for /weather*
 
 router.get('', (req, res, next) => {
     let docs = [];
     let counter;
-    Forecast.distinct('place')
+    Place.distinct('city')
     .then((doc) => {
         counter = doc.length;
         doc.forEach((city) => {
