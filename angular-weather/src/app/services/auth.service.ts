@@ -14,7 +14,7 @@ export class AuthService {
   ) { }
 
   register(user: User) :Promise<any> {
-    return this.http.post('http://localhost:3000/auth/register', user).toPromise().then((res) => {
+    return this.http.post('https://stormy-cliffs-52434.herokuapp.com/auth/register', user).toPromise().then((res) => {
        let token = res.headers.get('x-auth');
        let user = new User(res.json().fullName, res.json().email);
        if(token && user){
