@@ -937,7 +937,7 @@ var AuthService = (function () {
     }
     AuthService.prototype.register = function (user) {
         var _this = this;
-        return this.http.post('http://localhost:3000/auth/register', user).toPromise().then(function (res) {
+        return this.http.post('/auth/register', user).toPromise().then(function (res) {
             var token = res.headers.get('x-auth');
             var user = new __WEBPACK_IMPORTED_MODULE_1__models_User__["a" /* User */](res.json().fullName, res.json().email);
             if (token && user) {
