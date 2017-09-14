@@ -15,7 +15,9 @@ router.get('', (req, res, next) => {
             Forecast.findOne({ place: city })
             .sort('-time')
             .then((doc) => {
-                docs.push(doc);
+                if(doc){
+                    docs.push(doc);
+                }               
                 counter--;
                 if(counter === 0){
                     res.send(docs);
