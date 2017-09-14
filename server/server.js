@@ -21,13 +21,13 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Cors for development purposes
-var corsOptions = {
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    exposedHeaders: "x-auth"
-}
-app.use(cors(corsOptions));
+// var corsOptions = {
+//     origin: "*",
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     preflightContinue: false,
+//     exposedHeaders: "x-auth"
+// }
+// app.use(cors(corsOptions));
 
 // Angular front out_dir
 app.use(express.static(path.join(__dirname, 'public')));
