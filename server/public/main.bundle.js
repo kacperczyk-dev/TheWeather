@@ -950,7 +950,7 @@ var AuthService = (function () {
     };
     AuthService.prototype.login = function (user) {
         var _this = this;
-        return this.http.post('http://localhost:3000/auth/login', user).toPromise().then(function (res) {
+        return this.http.post('/auth/login', user).toPromise().then(function (res) {
             var token = res.headers.get('x-auth');
             var user = new __WEBPACK_IMPORTED_MODULE_1__models_User__["a" /* User */](res.json().fullName, res.json().email);
             if (token && user) {
@@ -966,7 +966,7 @@ var AuthService = (function () {
         var token = localStorage.getItem('token');
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]();
         headers.append('x-auth', token);
-        this.http.delete('http://localhost:3000/auth/logout', {
+        this.http.delete('/auth/logout', {
             headers: headers
         }).toPromise().then(function (res) {
             _this.flashMessagesService.show('You have been logged out', {
@@ -986,7 +986,7 @@ var AuthService = (function () {
         var token = localStorage.getItem('token');
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]();
         headers.append('x-auth', token);
-        return this.http.get('http://localhost:3000/auth/users/me', {
+        return this.http.get('auth/users/me', {
             headers: headers
         }).toPromise().then(function (res) {
             _this.authenticated.next(true);
@@ -1085,20 +1085,20 @@ var DataService = (function () {
         this.http = http;
     }
     DataService.prototype.getCurrentData = function () {
-        return this.http.get('http://localhost:3000/weather').toPromise();
+        return this.http.get('/weather').toPromise();
     };
     DataService.prototype.getPlaceDetails = function (place) {
-        return this.http.get('http://localhost:3000/weather/' + place).toPromise();
+        return this.http.get('/weather/' + place).toPromise();
     };
     DataService.prototype.getCities = function () {
-        return this.http.get('http://localhost:3000/place').toPromise();
+        return this.http.get('/place').toPromise();
     };
     DataService.prototype.saveCity = function (city) {
-        return this.http.post('http://localhost:3000/place/' + city, {}, undefined).toPromise();
+        return this.http.post('/place/' + city, {}, undefined).toPromise();
     };
     DataService.prototype.removeCity = function (city) {
         console.log("deleted from db");
-        return this.http.delete('http://localhost:3000/place/' + city, undefined).toPromise();
+        return this.http.delete('/place/' + city, undefined).toPromise();
     };
     return DataService;
 }());

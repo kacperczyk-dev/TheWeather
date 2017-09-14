@@ -12,24 +12,24 @@ export class DataService {
   ) {}
 
   getCurrentData(): Promise<any> {
-    return this.http.get('http://localhost:3000/weather').toPromise();
+    return this.http.get('/weather').toPromise();
   }
 
   getPlaceDetails(place: String): Promise<any> {
-    return this.http.get('http://localhost:3000/weather/' + place).toPromise();
+    return this.http.get('/weather/' + place).toPromise();
   }
 
   getCities(){
-    return this.http.get('http://localhost:3000/place').toPromise();
+    return this.http.get('/place').toPromise();
   }
 
   saveCity(city) {
-    return this.http.post('http://localhost:3000/place/' + city, {}, undefined).toPromise();
+    return this.http.post('/place/' + city, {}, undefined).toPromise();
   }
 
   removeCity(city) {
     console.log("deleted from db");
-    return this.http.delete('http://localhost:3000/place/' + city, undefined).toPromise();
+    return this.http.delete('/place/' + city, undefined).toPromise();
   }
 
 

@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   login(user: User) :Promise<any> {
-    return this.http.post('http://localhost:3000/auth/login', user).toPromise().then((res) => {
+    return this.http.post('/auth/login', user).toPromise().then((res) => {
        let token = res.headers.get('x-auth');
        let user = new User(res.json().fullName, res.json().email);
        if(token && user){
@@ -43,7 +43,7 @@ export class AuthService {
     let token = localStorage.getItem('token');
     let headers = new Headers();
     headers.append('x-auth', token);
-    this.http.delete('http://localhost:3000/auth/logout', {
+    this.http.delete('/auth/logout', {
       headers: headers
     }).toPromise().then((res) => {
       this.flashMessagesService.show('You have been logged out', {
@@ -63,7 +63,7 @@ export class AuthService {
     let token = localStorage.getItem('token');
     let headers = new Headers();
     headers.append('x-auth', token);
-    return this.http.get('http://localhost:3000/auth/users/me', {
+    return this.http.get('auth/users/me', {
       headers: headers
     }).toPromise().then((res) => {
       this.authenticated.next(true);
