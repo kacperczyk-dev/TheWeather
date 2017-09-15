@@ -51,10 +51,10 @@ app.listen(port, () => {
     //keep the app awake
     setInterval(function(){
         http.get('http://the-weather-heroku.herokuapp.com/');
-    }, 900000);
+    }, 300000);
 
     //get updated weather infor every 30min
     setInterval(function(){
         helper.getWeather();
-    }, 300000);
+    }, 900000);
 });
