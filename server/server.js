@@ -56,5 +56,5 @@ app.listen(port, () => {
     //get updated weather infor every 30min
     setInterval(function(){
         helper.getWeather();
-    }, 1800000);
+    }, 300000);
 });

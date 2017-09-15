@@ -20,6 +20,7 @@ router.get('', (req, res, next) => {
                 }               
                 counter--;
                 if(counter === 0){
+                    console.log(docs);
                     res.send(docs);
                 }
             });                
