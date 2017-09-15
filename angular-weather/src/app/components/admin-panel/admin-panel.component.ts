@@ -37,7 +37,7 @@ export class AdminPanelComponent implements OnInit {
 
   addCity() {
     if(this.newCity.length >= 2) {
-      if(this.cities.length < 20){
+      if(this.cities.length < 10){
         this.dataService.saveCity(this.newCity).then((res) => {
           this.cities.push(this.newCity);
           this.flashMessagesService.show(`${this.newCity} succesfuly saved`, {
